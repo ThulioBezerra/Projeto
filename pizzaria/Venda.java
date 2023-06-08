@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Venda {
     static Scanner scan = new Scanner(System.in);
-    static final String pix = "4002-8922"; // Bom dia e CIA - número :)
+    static final String pix = "4002-8922";
     static double x=0;
     static Pagamento pagamento;
 
@@ -48,15 +50,15 @@ public class Venda {
         +Sobremesa.cardapio[numSobremesa-1].preco+" R$";
     }
 
-    public static void resumoPedido(String pizzas, String bebidas, String sobremesas) {
+    public static void resumoPedido(ArrayList <String> pizzas, ArrayList <String>  bebidas, ArrayList <String>  sobremesas) {
         System.out.printf("""
                 Resumo do pedido:\n
                 %s
                 %s
                 %s\n
                 Total: %.2f\n
-                """, pizzas != null ?  pizzas  : "", bebidas != null ? bebidas : "",
-                 sobremesas != null ? sobremesas : "",x);
+                """, pizzas != null ?  Arrays.asList(pizzas)  : "", bebidas != null ? Arrays.asList(bebidas) : "",
+                 sobremesas != null ? Arrays.asList(sobremesas) : "",x);
 
     }
 
