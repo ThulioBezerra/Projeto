@@ -11,7 +11,9 @@ public class Pagamento {
         if(formaPagamento=="Cartão de Crédito"){
             parcelas = "\nTotal de Parcelas: "+parc+"\nValor de cada parcela: "+total/parc+"\n";
         }
-        System.out.printf("""
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+        System.out.printf(App.GREEN + """
             \n\n==========--NOTA FISCAL--==========\n\n
                 Pizzaria: Pappa Pizza's\n
                 Pedido \n
@@ -23,7 +25,7 @@ public class Pagamento {
                 Forma de pagamento: %s\n
                 Obrigado pela preferência!!!
             \n\n=========--VOLTE SEMPRE--==========\n\n
-                """,
+                """ + App.RESET,
                 pizzas.toString().replaceAll("[\\[\\],]", ""),
                 bebidas.toString().replaceAll("[\\[\\],]", ""),
                 sobremesas.toString().replaceAll("[\\[\\],]", ""),
@@ -36,10 +38,10 @@ public class Pagamento {
         
         int comprovante =scan.nextInt();
         if(comprovante==1){
-            System.out.println("\nObrigado pela preferência!!!");
+            System.out.println(App.GREEN + "\nObrigado pela preferência!!!" + App.RESET);
         }
         else if(comprovante==2){
-            System.out.println("Desculpe não recebemos o comprovante\n\n");
+            System.out.println(App.RED + "Desculpe não recebemos o comprovante\n\n" + App.RESET);
             pagPix();
         }
         else{
@@ -64,7 +66,7 @@ public class Pagamento {
         System.out.print("Insira a senha(4 digitos): ");
         String senha = scan.next();
         if(senha.length()!=4){
-            System.out.println("Algo errado com a senha.\nTente novamente.");
+            System.out.println(App.RED + "Algo errado com a senha.\nTente novamente." + App.RESET);
             pagCarDeb();
         }
     }
@@ -82,7 +84,7 @@ public class Pagamento {
         System.out.print("\nInsira a senha(4 digitos): ");
         String senha = scan.next();
         if(senha.length()!=4){
-            System.out.println("\nAlgo errado com a senha.\nTente novamente.\n");
+            System.out.println(App.RED + "\nAlgo errado com a senha.\nTente novamente.\n" + App.RESET);
             pagCarDeb();
         }
     }
@@ -114,7 +116,7 @@ public class Pagamento {
                 pagCarCred();
                 break;
             default:
-                System.out.println("Houve um erro no seu pagamento, por favor volte ao inicio.\n\n");
+                System.out.println(App.RED + "Houve um erro no seu pagamento, por favor volte ao inicio.\n\n" + App.RESET);
                 formaPagamento(total);
         }
         return op-1;

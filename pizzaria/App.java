@@ -2,6 +2,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class App {
+    //cores:
+    public static final String GREEN = "\u001B[32m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String RED = "\u001B[31m";
+    public static final String RESET = "\u001B[0m";
+
     static int opcao;
     static Scanner leitor = new Scanner(System.in);
     static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
@@ -28,8 +34,10 @@ public class App {
         opcao = Integer.parseInt(leitor.nextLine());
         switch (opcao) {
             case 1:
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
                 System.out.println("""
-                        O que deseha pedir?
+                        O que deseja pedir?
 
                         [1] Pizzas
                         [2] Bebidas
@@ -48,13 +56,13 @@ public class App {
                         sobremesas.add(venda.selecionarSobremesa());
                         break;
                     default:
-                        System.out.println("Certo. Irei cancelar esse pedido.");
+                        System.out.println(RED + "Certo. Irei cancelar esse pedido." + RESET);
 
                 }
                 break;
             case 2:
                 if(pizzas.size() == 0 && bebidas.size() == 0 && sobremesas.size() == 0) {
-                    System.out.println("Você não pediu nada, saindo do sistema...");
+                    System.out.println(RED + "Você não pediu nada, saindo do sistema...");
                 }else {
                     venda.nota_pagamento(pizzas,bebidas,sobremesas);
                 }
