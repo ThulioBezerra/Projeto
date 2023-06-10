@@ -4,70 +4,77 @@ import java.util.Scanner;
 
 public class Venda {
     static Scanner scan = new Scanner(System.in);
-    static final String pix = "4002-8922";
-    static double x=0;
+    static double preco_total = 0;
     static Pagamento pagamento;
 
-    public static String selecionarPizza() {
-        Pizza.mostrarCardapio(); 
+    public Venda() {
+        pagamento = new Pagamento();
+    }
+
+    public Pizza selecionarPizza() {
+        Pizza pizza = new Pizza();
+        Pizza.mostrarCardapio();
+
         System.out.print("\nInforme o número da pizza que deseja selecionar: ");
         int numPizza = scan.nextInt();
-       
+        pizza = Pizza.cardapio[numPizza-1];
+
         System.out.printf("\nA pizza selecionada foi: %d - %s  Preço: %.2f R$",
-        numPizza, Pizza.cardapio[numPizza - 1].nome,Pizza.cardapio[numPizza-1].preco);
-       
+                numPizza, Pizza.cardapio[numPizza - 1].nome, Pizza.cardapio[numPizza - 1].preco);
+
         System.out.printf("\nAguarde um momento até a pizza ficar pronta, enquanto isso fique a vontade :)\n\n");
-        x+=Pizza.cardapio[numPizza-1].preco;
-        return "Pizza: "+Pizza.cardapio[numPizza-1].nome+".........."
-        +Pizza.cardapio[numPizza-1].preco+" R$";
+        preco_total += Pizza.cardapio[numPizza - 1].preco;
+        return pizza;
     }
 
-    public static String selecionarBebida() {
-        Bebida.mostrarCardapio(); 
+    public Bebida selecionarBebida() {
+        Bebida bebida = new Bebida();
+        Bebida.mostrarCardapio();
+
         System.out.print("\nInforme o número da bebida que deseja selecionar: ");
         int numBebida = scan.nextInt();
-      
+        bebida= Bebida.cardapio[numBebida-1];
+
         System.out.printf("\nA bebida selecionada foi: %d - %s  Preço: %.2f R$",
-        numBebida, Bebida.cardapio[numBebida - 1].nome,Bebida.cardapio[numBebida-1].preco);      
-      
+                numBebida, Bebida.cardapio[numBebida - 1].nome, Bebida.cardapio[numBebida - 1].preco);
+
         System.out.printf("\nPedido concluído. Seu refrigerante foi selecionado. :)\n\n");
-        x+=Bebida.cardapio[numBebida-1].preco;
-        return "Bebida: "+Bebida.cardapio[numBebida-1].nome+".........."
-        +Bebida.cardapio[numBebida-1].preco+" R$";
+
+        preco_total += Bebida.cardapio[numBebida - 1].preco;
+        return bebida;
     }
 
-    public static String selecionarSobremesa() {
+    public Sobremesa selecionarSobremesa() {
+        Sobremesa sobremesa = new Sobremesa();
         Sobremesa.mostrarCardapio();
         System.out.print("\nInforme o número da sobremesa que deseja selecionar: ");
         int numSobremesa = scan.nextInt();
-       
+        sobremesa = Sobremesa.cardapio[numSobremesa-1];
         System.out.printf("A sobremesa selecionada foi: %d - %s  Preço: %.2f R$",
-        numSobremesa, Sobremesa.cardapio[numSobremesa - 1].nome,Sobremesa.cardapio[numSobremesa - 1].preco);
-       
+                numSobremesa, Sobremesa.cardapio[numSobremesa - 1].nome, Sobremesa.cardapio[numSobremesa - 1].preco);
+
         System.out.printf("\nPedido concluído. Sua sobremesa foi adicionada. :)\n\n");
-        x+=Sobremesa.cardapio[numSobremesa-1].preco;
-        return "Sobremesa: "+Sobremesa.cardapio[numSobremesa-1].nome+".........."
-        +Sobremesa.cardapio[numSobremesa-1].preco+" R$";
+
+        return sobremesa;
+
     }
 
-    public static void resumoPedido(ArrayList <String> pizzas, ArrayList <String>  bebidas, ArrayList <String>  sobremesas) {
+    public void resumoPedido(ArrayList<String> pizzas, ArrayList<String> bebidas, ArrayList<String> sobremesas) {
         System.out.printf("""
                 Resumo do pedido:\n
                 %s
                 %s
                 %s\n
                 Total: %.2f\n
-                """, pizzas != null ?  Arrays.asList(pizzas)  : "", bebidas != null ? Arrays.asList(bebidas) : "",
-                 sobremesas != null ? Arrays.asList(sobremesas) : "",x);
+                """, !pizzas.isEmpty() ? Arrays.asList(pizzas) : "", !bebidas.isEmpty() ? Arrays.asList(bebidas) : "",
+                !sobremesas.isEmpty() ? Arrays.asList(sobremesas) : "", preco_total);
 
     }
 
-    
-
-    public static void nota_pagamento(String pizza,String bebida,String sobremesa) {
-       int y = pagamento.formaPagamento(x);
-       pagamento.gerarNotaFiscal( x, pagamento.formasPagamento[y],pizza,bebida,sobremesa);
+    public void nota_pagamento(ArrayList<Pizza> pizza, ArrayList<Bebida> bebida,
+            ArrayList<Sobremesa> sobremesa) {
+        int index = pagamento.formaPagamento(preco_total);
+        pagamento.gerarNotaFiscal(preco_total, pagamento.formasPagamento[index], pizza, bebida, sobremesa);
     }
 
-    
 }

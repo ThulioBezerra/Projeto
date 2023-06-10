@@ -21,4 +21,8 @@ public class Produto {
             count++;
         }
     }
+
+    public String toString() {
+        return this.id + "   " + this.nome + "......................." + this.preco;
+    }
 }
