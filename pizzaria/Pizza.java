@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.io.IOException;
 
 public class Pizza extends Produto {
     protected String borda = "borda comum";
@@ -5,15 +7,7 @@ public class Pizza extends Produto {
     protected String carne = "sem carne";
     protected String molho = "sem molho";
     protected String[] extras = {}; // extras da pizza: calabresa, tempero e etc.
-    static Pizza[] cardapio = {
-            new Pizza(100, 24.50, "Mussarela", "catupiry", "mussarela", "sem carne", "sem molho",
-                    new String[] { "oregano", "azeitona" }),
-            new Pizza(101, 27, "Calabresa", "catupiry", "mussarela", "calabresa", "sem molho",
-                    new String[] { "cebola", "tomate" }),
-            new Pizza(102, 30, "Marguerita", "catupiry", "mussarela", "carne", "barbecue", new String[] { "cebola" }),
-            new Pizza(103, 27, "Frango e catupiry", "catupiry", "catupiry", "frango", "", new String[] { "cebola" }),
-            new Pizza(104, 27, "Presunto", "catupiry", "mussarela", "presunto", "", new String[] { }),
-    };
+    static ArrayList<Pizza> cardapio = lerCardapio();
 
     public Pizza() {
     }
@@ -28,7 +22,24 @@ public class Pizza extends Produto {
         this.extras = extras;
     }
 
-    // ja formatei
+    private static ArrayList<Pizza> lerCardapio(){
+        try{
+            String[][] matrizDados = LeitorDeCSV.lerCSV("pizzaria/lib/cardapioPizza.csv", 7);
+            ArrayList<Pizza> cardapio = new ArrayList<Pizza>();
+    
+            for(int i = 0; i<matrizDados.length; i++){
+                cardapio.add(new Pizza(Integer.parseInt(matrizDados[i][0]),
+                Double.parseDouble(matrizDados[i][1]), 
+                matrizDados[i][2], matrizDados[i][3], matrizDados[i][4], matrizDados[i][5], matrizDados[i][6],
+                matrizDados[i][7].split("/")));
+            }
+    
+            return cardapio;
+        } catch (IOException e){
+            throw new RuntimeException();
+        }
+    }
+
     public static void mostrarCardapio() {
         int count = 1;
         System.out.println("\n----- CARDAPIO -----\n");

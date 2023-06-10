@@ -17,13 +17,12 @@ public class Venda {
 
         System.out.print("\nInforme o número da pizza que deseja selecionar: ");
         int numPizza = scan.nextInt();
-        pizza = Pizza.cardapio[numPizza-1];
-
+        pizza = Pizza.cardapio.get(numPizza-1);
         System.out.printf("\nA pizza selecionada foi: %d - %s  Preço: %.2f R$",
-                numPizza, Pizza.cardapio[numPizza - 1].nome, Pizza.cardapio[numPizza - 1].preco);
+                numPizza, Pizza.cardapio.get(numPizza - 1).nome, Pizza.cardapio.get(numPizza - 1).preco);
 
         System.out.printf("\nAguarde um momento até a pizza ficar pronta, enquanto isso fique a vontade :)\n\n");
-        preco_total += Pizza.cardapio[numPizza - 1].preco;
+        preco_total += Pizza.cardapio.get(numPizza - 1).preco;
         return pizza;
     }
 
@@ -33,14 +32,14 @@ public class Venda {
 
         System.out.print("\nInforme o número da bebida que deseja selecionar: ");
         int numBebida = scan.nextInt();
-        bebida= Bebida.cardapio[numBebida-1];
+        bebida= Bebida.cardapio.get(numBebida-1);
 
         System.out.printf("\nA bebida selecionada foi: %d - %s  Preço: %.2f R$",
-                numBebida, Bebida.cardapio[numBebida - 1].nome, Bebida.cardapio[numBebida - 1].preco);
+                numBebida, Bebida.cardapio.get(numBebida - 1).nome, Bebida.cardapio.get(numBebida - 1).preco);
 
         System.out.printf("\nPedido concluído. Seu refrigerante foi selecionado. :)\n\n");
 
-        preco_total += Bebida.cardapio[numBebida - 1].preco;
+        preco_total += Bebida.cardapio.get(numBebida - 1).preco;
         return bebida;
     }
 
@@ -49,9 +48,9 @@ public class Venda {
         Sobremesa.mostrarCardapio();
         System.out.print("\nInforme o número da sobremesa que deseja selecionar: ");
         int numSobremesa = scan.nextInt();
-        sobremesa = Sobremesa.cardapio[numSobremesa-1];
+        sobremesa = Sobremesa.cardapio.get(numSobremesa-1);
         System.out.printf("A sobremesa selecionada foi: %d - %s  Preço: %.2f R$",
-                numSobremesa, Sobremesa.cardapio[numSobremesa - 1].nome, Sobremesa.cardapio[numSobremesa - 1].preco);
+                numSobremesa, Sobremesa.cardapio.get(numSobremesa - 1).nome, Sobremesa.cardapio.get(numSobremesa - 1).preco);
 
         System.out.printf("\nPedido concluído. Sua sobremesa foi adicionada. :)\n\n");
 

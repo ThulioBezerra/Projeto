@@ -1,4 +1,9 @@
+import java.util.ArrayList;
+import java.io.IOException;
+
 public class Sobremesa extends Produto {
+    public static ArrayList<Sobremesa> cardapio = lerCardapio();
+
     public Sobremesa() {
     }
 
@@ -6,17 +11,24 @@ public class Sobremesa extends Produto {
         super(id_p, preco_p, nome_p);
     }
 
-    static Sobremesa[] cardapio = {
-            new Sobremesa(300, 20, "Bolo Chocolate"),
-
-            new Sobremesa(301, 2.50, "Sorvete"),
-
-            new Sobremesa(302, 25, "Pettieu Gattou"),
-
-            new Sobremesa(303, 7, "Chocolate Branco"),
-
-            new Sobremesa(304, 7, "Chocolate"),
-    };
+    private static ArrayList<Sobremesa> lerCardapio(){
+        try{
+            String[][] matrizDados = LeitorDeCSV.lerCSV("pizzaria/lib/cardapioSobremesa.csv", 3);
+            ArrayList<Sobremesa> cardapio = new ArrayList<Sobremesa>();
+    
+            for(int i = 0; i<matrizDados.length; i++){
+                cardapio.add(new Sobremesa(
+                    Integer.parseInt(matrizDados[i][0]),
+                    Double.parseDouble(matrizDados[i][1]),
+                    matrizDados[i][2]
+                ));
+            }
+    
+            return cardapio;
+        } catch (IOException e){
+            throw new RuntimeException();
+        }
+    }
 
     public static void mostrarCardapio() {
         int count = 1;
