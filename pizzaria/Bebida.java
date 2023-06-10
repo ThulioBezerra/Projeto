@@ -50,6 +50,6 @@ public class Bebida extends Produto {
 
     @Override
     public String toString() {
-        return this.id + "   " + this.nome + "  " + this.ml + "ML ......................." + this.preco;
+        return this.id + "   " + this.nome + "  " + this.ml + "ML ......................." + this.preco + "\n   ";
     }
 }

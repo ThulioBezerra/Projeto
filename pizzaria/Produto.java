@@ -23,6 +23,6 @@ public class Produto {
     }
 
     public String toString() {
-        return this.id + "   " + this.nome + "......................." + this.preco;
+        return this.id + "  " + this.nome + "......................." + this.preco + "\n   ";
     }
 }

@@ -5,8 +5,8 @@ public class App {
     static int opcao;
     static Scanner leitor = new Scanner(System.in);
     static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
-    static ArrayList<Bebida> bebida = new ArrayList<Bebida>();
-    static ArrayList<Sobremesa> sobremesa = new ArrayList<Sobremesa>();
+    static ArrayList<Bebida> bebidas = new ArrayList<Bebida>();
+    static ArrayList<Sobremesa> sobremesas = new ArrayList<Sobremesa>();
     static Venda venda = new Venda();
 
     public static void main(String[] args) throws Exception {
@@ -42,10 +42,10 @@ public class App {
                         pizzas.add(venda.selecionarPizza());
                         break;
                     case 2:
-                        bebida.add(venda.selecionarBebida());
+                        bebidas.add(venda.selecionarBebida());
                         break;
                     case 3:
-                        sobremesa.add(venda.selecionarSobremesa());
+                        sobremesas.add(venda.selecionarSobremesa());
                         break;
                     default:
                         System.out.println("Certo. Irei cancelar esse pedido.");
@@ -53,7 +53,11 @@ public class App {
                 }
                 break;
             case 2:
-                venda.nota_pagamento(pizzas,bebida,sobremesa);
+                if(pizzas.size() == 0 && bebidas.size() == 0 && sobremesas.size() == 0) {
+                    System.out.println("Você não pediu nada, saindo do sistema...");
+                }else {
+                    venda.nota_pagamento(pizzas,bebidas,sobremesas);
+                }
         }
     }
 }

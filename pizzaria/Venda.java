@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Venda {
@@ -54,6 +53,7 @@ public class Venda {
 
         System.out.printf("\nPedido concluído. Sua sobremesa foi adicionada. :)\n\n");
 
+        preco_total += Sobremesa.cardapio.get(numSobremesa - 1).preco;
         return sobremesa;
 
     }
@@ -65,8 +65,11 @@ public class Venda {
                 %s
                 %s\n
                 Total: %.2f\n
-                """, !pizzas.isEmpty() ? Arrays.asList(pizzas) : "", !bebidas.isEmpty() ? Arrays.asList(bebidas) : "",
-                !sobremesas.isEmpty() ? Arrays.asList(sobremesas) : "", preco_total);
+                """, 
+                pizzas.isEmpty() ? "" : pizzas,
+                bebidas.isEmpty() ? "" : bebidas,
+                sobremesas.isEmpty() ? "" : sobremesas,
+                preco_total);
 
     }
 

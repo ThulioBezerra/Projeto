@@ -1,13 +1,12 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Arrays;
 public class Pagamento {
 
     public String[] formasPagamento = {"PIX","Dinheiro","Cartão de Débito","Cartão de Crédito"}; 
     static Scanner scan = new Scanner(System.in);
     static int parc;
     
-    public void gerarNotaFiscal(double total,String formaPagamento,ArrayList<Pizza> pizza,ArrayList <Bebida> bebida,ArrayList <Sobremesa> sobremesa){
+    public void gerarNotaFiscal(double total,String formaPagamento,ArrayList<Pizza> pizzas,ArrayList <Bebida> bebidas,ArrayList <Sobremesa> sobremesas){
         String parcelas="";
         if(formaPagamento=="Cartão de Crédito"){
             parcelas = "\nTotal de Parcelas: "+parc+"\nValor de cada parcela: "+total/parc+"\n";
@@ -16,15 +15,19 @@ public class Pagamento {
             \n\n==========--NOTA FISCAL--==========\n\n
                 Pizzaria: Pappa Pizza's\n
                 Pedido \n
-                %s\n
-                %s\n
-                %s\n
+                %s
+                %s
+                %s
                 Total: %.2f\n
                 %s
                 Forma de pagamento: %s\n
                 Obrigado pela preferência!!!
             \n\n=========--VOLTE SEMPRE--==========\n\n
-                """,Arrays.asList(pizza),bebida,sobremesa,total,parcelas,formaPagamento);
+                """,
+                pizzas.toString().replaceAll("[\\[\\],]", ""),
+                bebidas.toString().replaceAll("[\\[\\],]", ""),
+                sobremesas.toString().replaceAll("[\\[\\],]", ""),
+                total,parcelas,formaPagamento);
     }
 
     public void pagPix(){
