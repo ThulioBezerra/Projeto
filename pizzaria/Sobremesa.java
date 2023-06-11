@@ -32,7 +32,7 @@ public class Sobremesa extends Produto {
 
     public static void mostrarCardapio() {
         int count = 1;
-        System.out.println("----- CARDAPIO -----");
+        System.out.println(App.YELLOW+"----- CARDAPIO -----");
         for (Sobremesa sobremesa : cardapio) {
             if (count % 2 == 0) {
                 System.out.printf("%d - %s  - %.2f \n", count, sobremesa.nome, sobremesa.preco);

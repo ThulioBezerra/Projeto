@@ -36,7 +36,7 @@ public class Bebida extends Produto {
     public static void mostrarCardapio() {
 
         int count = 1;
-        System.out.println("----- CARDAPIO -----");
+        System.out.println(App.BLUE+"----- CARDAPIO -----");
         for (Bebida bebida : cardapio) {
             if (count % 2 == 0) {
                 System.out.printf("%d - %s %dml - %.2f \n", count, bebida.nome, bebida.ml, bebida.preco);

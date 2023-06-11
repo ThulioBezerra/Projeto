@@ -42,7 +42,7 @@ public class Pizza extends Produto {
 
     public static void mostrarCardapio() {
         int count = 1;
-        System.out.println("\n----- CARDAPIO -----\n");
+        System.out.println(App.RED+"\n----- CARDAPIO -----\n");
         for (Pizza pizza : cardapio) {
             if (count % 2 == 0) {
                 System.out.printf("%d - %s  - %.2f \n", count, pizza.nome, pizza.preco);
@@ -52,7 +52,27 @@ public class Pizza extends Produto {
                 count++;
             }
         }
+      System.out.println("6 - Ver Detalhes de uma Pizza");
     }
+
+    public void mostrarCardapio(int pizzaSelecionada){
+        System.out.printf(App.CIANO+"""
+                \nPizza %s -----------------\n
+                Borda: %s
+                Queijo: %s
+                Molho: %s
+                Carne: %s
+                Extras:
+                """,Pizza.lerCardapio().get(pizzaSelecionada-1).nome,Pizza.lerCardapio().get(pizzaSelecionada-1).borda,
+                Pizza.lerCardapio().get(pizzaSelecionada-1).queijo,Pizza.lerCardapio().get(pizzaSelecionada-1).molho,
+                Pizza.lerCardapio().get(pizzaSelecionada-1).carne);    
+            
+                for (String extra : Pizza.lerCardapio().get(pizzaSelecionada-1).extras) {
+        System.out.print(extra + " | ");
+    }
+    System.out.println();
+            }
+            
 
     @Override
     public String toString() {

@@ -14,8 +14,17 @@ public class Venda {
         Pizza pizza = new Pizza();
         Pizza.mostrarCardapio();
 
-        System.out.print("\nInforme o número da pizza que deseja selecionar: ");
+        System.out.print("\nInforme o número da pizza que deseja selecionar: "+App.RESET);
         int numPizza = scan.nextInt();
+
+        if(numPizza==6){
+            System.out.print("\nDiga qual pizza deseja ver os detalhes: ");
+            int pizzaSelecionada = scan.nextInt();
+            pizza.mostrarCardapio(pizzaSelecionada);
+            return selecionarPizza();
+        }
+
+        else{
         pizza = Pizza.cardapio.get(numPizza-1);
         System.out.printf("\n%sA pizza selecionada foi: %d - %s  Preço: %.2f R$%s", App.GREEN,
             numPizza, Pizza.cardapio.get(numPizza - 1).nome, Pizza.cardapio.get(numPizza - 1).preco, App.RESET);
@@ -26,12 +35,13 @@ public class Venda {
         preco_total += Pizza.cardapio.get(numPizza - 1).preco;
         return pizza;
     }
+}
 
     public Bebida selecionarBebida() {
         Bebida bebida = new Bebida();
         Bebida.mostrarCardapio();
 
-        System.out.print("\nInforme o número da bebida que deseja selecionar: ");
+        System.out.print("\nInforme o número da bebida que deseja selecionar: "+App.RESET);
         int numBebida = scan.nextInt();
         bebida= Bebida.cardapio.get(numBebida-1);
 
@@ -48,7 +58,7 @@ public class Venda {
     public Sobremesa selecionarSobremesa() {
         Sobremesa sobremesa = new Sobremesa();
         Sobremesa.mostrarCardapio();
-        System.out.print("\nInforme o número da sobremesa que deseja selecionar: ");
+        System.out.print("\nInforme o número da sobremesa que deseja selecionar: "+App.RESET);
         int numSobremesa = scan.nextInt();
         sobremesa = Sobremesa.cardapio.get(numSobremesa-1);
         System.out.printf("%sA sobremesa selecionada foi: %d - %s  Preço: %.2f R$%s", App.GREEN,
